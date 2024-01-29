@@ -14,7 +14,7 @@ spec:
           service:
             name: homeassistant
             port:
-              number: 80
+              number: 8123
 
 ---
 apiVersion: v1
