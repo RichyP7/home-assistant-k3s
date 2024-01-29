@@ -23,7 +23,7 @@ metadata:
   name: homeassistant
 spec:
   ports:
-    - port: 80
+    - port: 8123
       protocol: TCP
   selector:
     app:  homeassistant
