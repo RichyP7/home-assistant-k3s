@@ -18,3 +18,9 @@ k3s certificate rotate
 
 #### Start K3s
 systemctl start k3s
+
+
+### Add configuration to container
+As long as there is no package created we manually create the helm chart by file
+
+`kubectl create configmap hoa-cfgmap --from-file ../config/configuration.yaml`

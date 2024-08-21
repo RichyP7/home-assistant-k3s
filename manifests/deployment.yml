@@ -20,15 +20,16 @@ spec:
           name: homeassistant
           env:
             - name: TZ
-              value: "Australia/Brisbane"
+              value: "Europe/Vienna"
           securityContext:
             privileged: true
           ports:
             - containerPort: 8123
               protocol: TCP
           volumeMounts:
-            - name: config
-              mountPath: '/config'
+            - name: config-volume
+              mountPath: '/config/configuration.yaml'
+              subPath: 'configuration.yaml'
             - name: localtime
               mountPath: '/etc/localtime'
               readOnly: true
@@ -39,11 +40,11 @@ spec:
             limits:
               memory: 2Gi
               cpu: 1
-      restartPolicy: Always
       volumes:
-        - name: config
-          hostPath:
-            path: /opt/volumes/homeassistant/config
         - name: localtime
           hostPath:
             path: /etc/localtime
+        - name: config-volume
+          configMap:
+            name: hoa-cfgmap
+      restartPolicy: Always
